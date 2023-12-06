@@ -15,30 +15,30 @@ function init() {
         dropdownMenu.append("option").text(name).property("value", name);
       });
 
-      const defaultSampleID = names[0];
-      console.log(`The default Sample ID is: ${defaultSampleID}`);
+      const baseSampleID = names[0];
+      console.log(`The default Sample ID is: ${baseSampleID}`);
 
-      barPlot(defaultSampleID);
-      getMeta(defaultSampleID);
-      bubblePlot(defaultSampleID);
+      barPlot(baseSampleID);
+      getMeta(baseSampleID);
+      bubblePlot(baseSampleID);
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
 
 // function to refresh data when selecting dataset
-function optionChanged(newTestID) {
+function optionChanged(selectTestID) {
   // Log selected ID to console
-  console.log(`Newly selected sample ID is: ${newTestID}`);
+  console.log(`Newly selected sample ID is: ${selectTestID}`);
 
   // Refresh charts/meta
-  barPlot(newTestID);
-  getMeta(newTestID);
-  bubblePlot(newTestID);
+  barPlot(selectTestID);
+  getMeta(selectTestID);
+  bubblePlot(selectTestID);
 }
 
 // plot bar chart function
-function barPlot(newTestID) {
-  const id = newTestID;
+function barPlot(selectTestID) {
+  const id = selectTestID;
 
   d3.json(URL)
     .then((response) => {
@@ -76,8 +76,8 @@ function barPlot(newTestID) {
 }
 
 // define meta function for demographicInfo
-function getMeta(newTestID) {
-  const id = newTestID;
+function getMeta(selectTestID) {
+  const id = selectTestID;
 
   d3.json(URL)
     .then((response) => {
@@ -98,8 +98,8 @@ function getMeta(newTestID) {
 }
 
 // define bubble chart function
-function bubblePlot(newTestID) {
-  const id = newTestID;
+function bubblePlot(selectTestID) {
+  const id = selectTestID;
 
   d3.json(URL)
     .then((response) => {
